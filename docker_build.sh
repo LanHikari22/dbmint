@@ -1,1 +1,1 @@
-docker build -t dbmint .
+docker build -t $(cat app_name) .

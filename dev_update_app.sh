@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # Refresh content of /app/
-docker exec dbmint rm -rf /app/
-docker exec dbmint mkdir -p /app/
-docker cp app/. dbmint:/app/
+docker exec $(cat app_name) rm -rf /app/
+docker exec $(cat app_name) mkdir -p /app/
+docker cp app/. $(cat app_name):/app/

@@ -10,9 +10,9 @@ echo 'dbmint is recommended to be used as an external command.' >> /etc/motd
 echo >> /etc/motd
 echo 'You may change this message by editing /etc/motd.' >> /etc/motd
 
-ssh-keygen -A
-
-/usr/sbin/sshd -D
+# For SSH:
+# ssh-keygen -A
+# /usr/sbin/sshd -D
 
 # Stay on indefinitely
 tail -f /dev/null
