@@ -14,5 +14,12 @@ echo 'You may change this message by editing /etc/motd.' >> /etc/motd
 # ssh-keygen -A
 # /usr/sbin/sshd -D
 
-# Stay on indefinitely
-tail -f /dev/null
+# This should reflect the is_persistent file having Yes or No.
+
+# If Yes:
+# Stay on indefinitely 
+# tail -f /dev/null
+
+# If No:
+# Just run the app
+ . /opt/venv/bin/activate && python3 /app/dbmint.py $@

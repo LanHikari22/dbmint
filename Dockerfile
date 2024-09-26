@@ -5,14 +5,15 @@ FROM alpine:latest
  RUN apk update && apk add --no-cache \
   python3 \
   py3-pip \
-  gcc
+  gcc \
+  sqlite
 
 # Create a Python virtual environment
 RUN python3 -m venv /opt/venv
 
 # Activate the virtual environment and install the necessary Python package
-RUN . /opt/venv/bin/activate && pip install \
-  dbml-sqlite
+# RUN . /opt/venv/bin/activate && pip install \
+# dbml-sqlite
 
 # Set up SSH
 # RUN mkdir /var/run/sshd
@@ -23,14 +24,17 @@ RUN . /opt/venv/bin/activate && pip install \
 # RUN echo "export VISIBLE=now" >> /etc/profile
 
 # Set the timezone
-ENV TZ=America/Chicago
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# ENV TZ=America/Chicago
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Setup place for bins in $PATH
 RUN mkdir -p /root/.local/bin
 RUN echo 'PATH=/root/.local/bin:$PATH' >> /root/.zshrc
 
 COPY app /app/
+
+# Let's install the requirements by the app
+RUN . /opt/venv/bin/activate && pip install -r /app/requirements.txt
 
 # Expose ports
 # EXPOSE 22

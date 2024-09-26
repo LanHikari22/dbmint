@@ -1,1 +1,1 @@
-docker build -t $(cat app_name) .
+docker build -t lan22h/$(cat app_name):latest .
