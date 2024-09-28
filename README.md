@@ -77,7 +77,7 @@ Table users_otm_posts {
 :--
 | Diagram generated from [dbdiagram.io](https://dbdiagram.io/d) using the above code |
 
-Now let's generate a sqlite3 db file using the above schema.dbml
+Now let's generate a sqlite3 db file using the above schema.dbml (On Windows CMD, you need to remove the "--user $(id -u):$(id -g)" bit.)
 ```
   docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest gen schema.dbml -o mydb.db
 ```
