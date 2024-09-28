@@ -3,6 +3,8 @@ This tool aims to simplify the workflow of generating sqlite3 databases. It uses
 make creating schemas easy and to also benefit from its graphical editor functionality for easier diagram generation! It also allows exchangability between
 database content and a directory of csv files.
 
+Find it on [Github](https://github.com/LanHikari22/dbmint), and [Dockerhub](https://hub.docker.com/repository/docker/lan22h/dbmint/general)
+
 ## Table of Contents
 
   1. [Getting Started](#getting-started)
