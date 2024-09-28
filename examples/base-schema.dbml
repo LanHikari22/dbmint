@@ -1,0 +1,30 @@
+able users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table posts {
+  id integer [primary key]
+  title varchar
+  body text [note: 'Content of the post']
+  user_id integer
+  status varchar
+  created_at timestamp
+}
+
+Table follows {
+  following_user_id integer [ref: - users.id]
+  followed_user_id integer [ref: - users.id]
+  created_at timestamp 
+}
+
+
+// A one-to-many relationship between users and posts
+Table users_otm_posts {
+  id integer [primary key]
+  user_id integer [ref: - users.id]
+  post_id integer [ref: - posts.id]
+}
+
