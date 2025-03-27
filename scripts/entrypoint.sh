@@ -12,9 +12,9 @@
 
 # For SSH:
 # ssh-keygen -A
-# /usr/sbin/sshd -D
+# /usr/sbin/sshd -D &
 
-# This should reflect the is_persistent file having Yes or No.
+# TODO This should reflect the is_persistent file having Yes or No.
 
 # If Yes:
 # Stay on indefinitely 
