@@ -22,4 +22,6 @@
 
 # If No:
 # Just run the app
- . /opt/venv/bin/activate && python3 /app/dbmint.py $@
+ . /opt/venv/bin/activate && \
+  PYTHONPATH=/app/src python3 -m dbmint.main $@
+

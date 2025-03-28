@@ -68,6 +68,6 @@ def print_and_exit_on(cond: bool, s: str, exit_code: int=1) -> IO[None]:
     return IO(None)
 
 def os_system(command: str) -> IO[None]:
-    print('$ ' + command)
+    # print('$ ' + command)
     os.system(command)
     return IO(None)
