@@ -1,11 +1,11 @@
-able users {
+Table Users {
   id integer [primary key]
   username varchar
   role varchar
   created_at timestamp
 }
 
-Table posts {
+Table Posts {
   id integer [primary key]
   title varchar
   body text [note: 'Content of the post']
@@ -14,17 +14,18 @@ Table posts {
   created_at timestamp
 }
 
-Table follows {
-  following_user_id integer [ref: - users.id]
-  followed_user_id integer [ref: - users.id]
+// A one-to-many relationship between users
+Table Follows_User_to_Users {
+  from_id integer [ref: - Users.id]
+  to_id integer [ref: - Users.id]
   created_at timestamp 
 }
 
 
 // A one-to-many relationship between users and posts
-Table users_otm_posts {
+Table Owns_User_to_Posts {
   id integer [primary key]
-  user_id integer [ref: - users.id]
-  post_id integer [ref: - posts.id]
+  user_id integer [ref: - Users.id]
+  post_id integer [ref: - Posts.id]
 }
 
