@@ -1,8 +1,9 @@
 import os
-from typing import Any, Dict, Generic, Tuple, List, TypeVar, TypedDict, Union
+from typing import Any, Callable, Dict, Generic, Iterable, Tuple, List, TypeVar, TypedDict, Union
 import inspect
+import checkpipe as pipe
 
-from result import Result
+from result import Err, Ok, Result
 
 IO_T = TypeVar('IO_T')
 
@@ -37,22 +38,23 @@ class IO(Generic[IO_T]):
             return self._result
 
 
-AppError_Type = TypeVar('AppError_Type')
 AppError_Enums = TypeVar('AppError_Enums')
 
-class AppError(Generic[AppError_Type, AppError_Enums]):
-    def __init__(self, type: AppError_Type, errno: AppError_Enums, details: str='', data: Dict[str, Any]={}):
-        self.type = type
+class AppError(Generic[AppError_Enums]):
+    def __init__(self, errno: AppError_Enums, details: str='', data: Dict[str, Any]={}):
         self.errno = errno
         self.details = details
         self.data = data
     
     def __str__(self) -> str:
         return str(self.__dict__)
+    
+    def __repr__(self) -> str:
+        return str(self)
 
 
-Common_T1 = TypeVar('Common_T1')
-def unwrap_or_print_and_exit_on_err(result: Result[Common_T1, str], exit_code: int=1) -> IO[Common_T1]:
+Common1_T = TypeVar('Common1_T')
+def unwrap_or_print_and_exit_on_err(result: Result[Common1_T, str], exit_code: int=1) -> IO[Common1_T]:
     if result.is_ok():
         return IO(result.unwrap())
     else:
@@ -71,3 +73,4 @@ def os_system(command: str) -> IO[None]:
     # print('$ ' + command)
     os.system(command)
     return IO(None)
+

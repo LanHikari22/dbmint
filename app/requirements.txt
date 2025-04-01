@@ -1,3 +1,4 @@
 checkpipe
 result
 dbml-sqlite
+pytrait
