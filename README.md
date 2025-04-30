@@ -111,7 +111,7 @@ and then import this back into the db:
 All contribution and feature requests are welcome. Please raise an issue and we can talk about anything.
 
 ## License
-MIT
+This theme is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php) © 2024-2025 Mohammed Alzakariya.
 
 ## Credits
 - Thanks to the [dbml file format](https://github.com/holistics/dbml) creators for making this possible.
