@@ -1,3 +1,5 @@
 mydb.db
 tmp/
 __pycache__/
+mnt/
+app/rust/target/

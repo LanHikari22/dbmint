@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dbmint"
+version = "0.0.1"
+authors = [
+  { name = "Mohammed Alzakariya", email = "lanhikarixx@gmail.com" }
+]
+description = "Dbmint app for creating sqlite3 database files and generating Rust projects with dbmt schma files"
+#readme = 'README.md'
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "Result",
+  "checkpipe (>=1.0.22,<2.0.0)",
+  "pydbml (>=1.2.0,<2.0.0)"
+]
+repository = 'https://github.com/LanHikari22/dbmint'
+documentation = 'https://github.com/LanHikari22/dbmint/blob/main/README.md'
+keywords = ['dbml', 'sqlite3']
+license = 'MIT'
