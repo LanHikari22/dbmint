@@ -28,8 +28,9 @@
   - [7.1. Generating a Sqlite3 database file (.db) from a schema file (.dbml)](#71-generating-a-sqlite3-database-file-db-from-a-schema-file-dbml)
   - [7.2. Exporting database data to a directory of csvs](#72-exporting-database-data-to-a-directory-of-csvs)
 - [8. Contribution](#8-contribution)
-- [9. License](#9-license)
-- [10. Credits](#10-credits)
+- [9. Sponsorship](#9-sponsorship)
+- [10. License](#10-license)
+- [11. Credits](#11-credits)
 
 # 1. Intro
 
@@ -135,9 +136,13 @@ and then import this back into the db:
 # 8. Contribution
 All contribution and feature requests are welcome. Please raise an issue and we can talk about anything.
 
-# 9. License
+# 9. Sponsorship
+
+If this project brings value to you, please consider supporting me with a monthly sponsorship or [buying me a coffee](https://buymeacoffee.com/lan22h)
+
+# 10. License
 This theme is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php) © 2025 Mohammed Alzakariya.
 
-# 10. Credits
+# 11. Credits
 - Thanks to the [dbml file format](https://github.com/holistics/dbml) creators for making this possible.
 - Thanks to the [dbml-sqlite](https://pypi.org/project/dbml-sqlite/) creator for extending dbml support to sqlite.
