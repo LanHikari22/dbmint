@@ -37,6 +37,3 @@ Care must be taken here, as the list of languages grows, so can the image size a
 
 Currently, we support a limited set of features of what sqlite3 offers for basic database manipulation. When new features are planned, they should remain consistent in convention and underlying process as the other features. We need to have a core library with which to compose new feature sets added linearly.
 
-
-
-

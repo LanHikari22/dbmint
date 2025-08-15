@@ -1,4 +1,4 @@
-# Intro
+# 1. Intro
 
 You can find the project notes [here][1]. They include any task and goal planning for this project.
 
@@ -9,6 +9,10 @@ This project implements its own language `*.dbmt` which is a superset language o
 Find the `*.dbmt` language specification in [dbmt specification v1.0.0t](dbmt%20specification%20v1.0.0t.md).
 
 Correctness of the dbmint implementation is defined in the [dbmint specification](dbmint%20specification%20v1.0.0t.md)
+
+# 2. TODO
+- Improve diagnostics when users make errors in the dbml file
+- Allow enum values to be null
 
 [1]: https://github.com/delta-domain-rnd/delta-trace/blob/webview/lan/projects/2025/000%20dbmint/docs/2025/000%20Dbmint.md
 [2]: https://dbml.dbdiagram.io/docs/

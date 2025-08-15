@@ -8,6 +8,7 @@
   - [3.4. Signals](#34-signals)
     - [3.4.1. Signal Trigger Types](#341-signal-trigger-types)
     - [3.4.2. Provided Symbols](#342-provided-symbols)
+    - [3.4.3. Signal Trigger Type priority queue](#343-signal-trigger-type-priority-queue)
   - [3.5. Computed Fields](#35-computed-fields)
   - [3.6. Virtual Fields](#36-virtual-fields)
   - [3.7. Data Access](#37-data-access)
@@ -140,8 +141,6 @@ Status: Pend
 
 Note that when we write `OK (0)`, we just mean the value `0`. The rest is added for clarification.
 
-For `notify`, there can exist many [subscribers](#48-signal-subscribing). For the remaining trigger types, there can only exist one [subscriber](#48-signal-subscribing) as they follow a [client/server pattern](#410-clientserver-pattern). [Generated Library](#46-generated-library) awaits a response in all of those cases from [User Software](#42-user-software).
-
 ### 3.4.2. Provided Symbols
 
 Provided symbols are common computations provided by [Generated Library](#46-generated-library) and do not need to be defined by [User Software](#42-user-software).
@@ -149,6 +148,28 @@ Provided symbols are common computations provided by [Generated Library](#46-gen
 | Symbol       | Effect                                                               |
 | ------------ | -------------------------------------------------------------------- |
 | get_date_now | Calculates the current date now according to user timezone settings. |
+
+### 3.4.3. Signal Trigger Type priority queue
+
+
+For `notify`, there can exist many [subscribers](#48-signal-subscribing). Events are simply published on trigger.
+
+For [signal trigger types](#341-signal-trigger-types) other than `notify`, [User Software](#42-user-software) must provide a [server](#410-clientserver-pattern) to respond to requests made by [Generated Library](#46-generated-library).
+
+
+For the remaining trigger types, 
+
+There is a priority queue in execution. [Generated Library](#46-generated-library) combines all non-notify 
+signals and executes them synronously in a queue.
+
+The queue goes as follows:
+
+1. Handle `override` trigger types first
+2. Handle `allow` on the possibly overriden value
+3. Handle `warn`.
+4. Handle `trace`.
+
+For non-notify signals, there must exist zero or one [subscriber](#48-signal-subscribing) per [signal trigger type](#341-signal-trigger-types) for a given set of [triggers](#33-triggers).
 
 
 ## 3.5. Computed Fields
@@ -358,7 +379,17 @@ Inspired by the [publish/subscribe pattern][4] (4).
 
 ## 4.10. Client/Server Pattern
 
-For [signal trigger types](#341-signal-trigger-types) other than `notify`, [User Software](#42-user-software) must provide a server to respond to requests made by [Generated Library](#46-generated-library).
+A server provides a service and uptime to respond to one or more clients at any time. 
+
+A client makes a request to the server to fulfill some service.
+
+In constrast to [signal subscribing](#48-signal-subscribing) where pubishers do not need to know
+subscribers and information is just posted to topics, 
+here the two entities must interact in a sequential manner. 
+
+1. Client sends a request denoted by the [signal symbol](#34-signals)
+2. Server responds with output to the client and a status code, where 0 is success and 
+   otherwise is some error code.
 
 # 5. References
 1. [dbml file format][1] (1)

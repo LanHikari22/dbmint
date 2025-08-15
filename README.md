@@ -18,54 +18,48 @@
   <sub>Built with ❤︎ by Mohammed Alzakariya</sub>
 </div>
 
-- [1. Intro](#1-intro)
-- [2. See also](#2-see-also)
-- [3. Getting Started](#3-getting-started)
-- [4. Features](#4-features)
-- [5. Caveats](#5-caveats)
-- [6. TODO](#6-todo)
-- [7. Use Cases](#7-use-cases)
-  - [7.1. Generating a Sqlite3 database file (.db) from a schema file (.dbml)](#71-generating-a-sqlite3-database-file-db-from-a-schema-file-dbml)
-  - [7.2. Exporting database data to a directory of csvs](#72-exporting-database-data-to-a-directory-of-csvs)
-- [8. Contribution](#8-contribution)
-- [9. Sponsorship](#9-sponsorship)
-- [10. License](#10-license)
-- [11. Credits](#11-credits)
+- [Intro](#intro)
+- [See also](#see-also)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Caveats](#caveats)
+- [Use Cases](#use-cases)
+  - [Generating a Sqlite3 database file (.db) from a schema file (.dbml)](#generating-a-sqlite3-database-file-db-from-a-schema-file-dbml)
+  - [Exporting database data to a directory of csvs](#exporting-database-data-to-a-directory-of-csvs)
+- [Contribution](#contribution)
+- [Support](#support)
+- [License](#license)
+- [Credits](#credits)
 
-# 1. Intro
+# Intro
 
-This tool aims to simplify the workflow of generating sqlite3 databases. It uses the [DBML](https://dbdiagram.io/) file format for schema generation to 
+This tool aims to simplify the workflow of generating sqlite3 databases. It uses the [DBML][5] file format for schema generation to 
 make creating schemas easy and to also benefit from its graphical editor functionality for easier diagram generation! It also allows exchangability between
 database content and a directory of csv files.
 
-# 2. See also
-- The project on [Github](https://github.com/LanHikari22/dbmint), and [Dockerhub](https://hub.docker.com/repository/docker/lan22h/dbmint/general).
-- The project [notes](https://github.com/delta-domain-rnd/delta-trace/blob/webview/lan/projects/2025/000%20dbmint/docs/2025/000%20Dbmint.md).
+# See also
+- The project on [Github][1], and [Dockerhub][6].
+- The project [notes][7].
 - The project [documentation](docs/intro.md).
 
-# 3. Getting Started
-You will need access to Docker, otherwise there is no setup necessary. See [their install instructions.](https://docs.docker.com/engine/install/)
+# Getting Started
+You will need access to Docker, otherwise there is no setup necessary. See [their install instructions.][4]
 
-# 4. Features
+# Features
 - Minimal install. Tool can be used through a single docker command.
 - Easily export the data of a db to a directory of table csvs which can be imported back in.
 - Allows use of the #defines from the C preprocessor on the .dbml file format in order to avoid duplications.
-- TODO Extends the .dbml standard to allow for external type validations through generating an external validator script. Currently supports Python and GDScript.
-- TODO Can set validation constraints on `#define`d types.
+- TODO upcoming, generate a database library in Rust based on dbmt files
 
-# 5. Caveats
+# Caveats
 - Currently supports one to one relations only, although the dbml file format is capable of describing one to many, and many to many. This may be supported in
   the future with the ability to automatically many to many (MTM) or one to many (OTM) tables from the schema with external validation checks.
  
-# 6. TODO
-- Improve diagnostics when users make errors in the dbml file
-- Allow enum values to be null
+# Use Cases
 
-# 7. Use Cases
+## Generating a Sqlite3 database file (.db) from a schema file (.dbml)
 
-## 7.1. Generating a Sqlite3 database file (.db) from a schema file (.dbml)
-
-Write the following schema.db to a file. This is mostly identical to the example in [dbdiagram.io](https://dbdiagram.io/d) except with modifications for 
+Write the following schema.db to a file. This is mostly identical to the example in [dbdiagram.io][3] except with modifications for 
   one to many relations.
 ```
 Table users {
@@ -92,7 +86,7 @@ Table follows {
 
 
 // A one-to-many relationship between users and posts
-Table users_otm_posts {
+Table user_owns_posts {
   id integer [primary key]
   user_id integer [ref: - users.id]
   post_id integer [ref: - posts.id]
@@ -100,7 +94,7 @@ Table users_otm_posts {
 
 ```
 
-| ![Image](https://cdn.discordapp.com/attachments/1239545053752332301/1289668605927227503/image.png?ex=66f9a8fc&is=66f8577c&hm=20071a7f2300d2eb972f84c6da2c369808da3ed1cad90a5598ebfbd545004c1f&)
+| ![Image](./attachments/Screenshot%20From%202025-08-15%2006-58-26.png)
 :--
 | Diagram generated from [dbdiagram.io](https://dbdiagram.io/d) using the above code |
 
@@ -116,8 +110,8 @@ It also generates a .sql from the dbml schema for the user's information. If thi
 ```
 
 
-## 7.2. Exporting database data to a directory of csvs
-Now that we have a database like mydb.db, we can edit this with any SQLite3 client like [DbGate](https://dbgate.org/). 
+## Exporting database data to a directory of csvs
+Now that we have a database like mydb.db, we can edit this with any SQLite3 client like [DbGate][2]. 
 
 Let's extract the content of the db with
 the following command:
@@ -133,16 +127,30 @@ and then import this back into the db:
   docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest gen schema.dbml -d mydata/ -o mydb.db 
 ```
 
-# 8. Contribution
+# Contribution
 All contribution and feature requests are welcome. Please raise an issue and we can talk about anything.
 
-# 9. Sponsorship
+# Support
 
-If this project brings value to you, please consider supporting me with a monthly sponsorship or [buying me a coffee](https://buymeacoffee.com/lan22h)
+If this project brings value to you, please consider supporting me with monthly support or [buying me a coffee](https://buymeacoffee.com/lan22h).
 
-# 10. License
+Your support would greatly help me to create new tools or improve existing ones!
+
+# License
 This theme is licensed under the [MIT license](https://opensource.org/licenses/mit-license.php) © 2025 Mohammed Alzakariya.
 
-# 11. Credits
-- Thanks to the [dbml file format](https://github.com/holistics/dbml) creators for making this possible.
-- Thanks to the [dbml-sqlite](https://pypi.org/project/dbml-sqlite/) creator for extending dbml support to sqlite.
+# Credits
+- Thanks to the [dbml file format][8] creators for making this possible.
+- Thanks to the [pydbml][10] creators for providing dbml parsing in python.
+- Thanks to the [dbml-sqlite][9] creator for extending dbml support to sqlite.
+
+[1]: https://github.com/LanHikari22/dbmint
+[2]: https://dbgate.org/
+[3]: https://dbdiagram.io/d
+[4]: https://docs.docker.com/engine/install/
+[5]: https://dbdiagram.io/
+[6]: https://hub.docker.com/repository/docker/lan22h/dbmint/general
+[7]: https://github.com/delta-domain-rnd/delta-trace/blob/webview/lan/projects/2025/000%20dbmint/docs/2025/000%20Dbmint.md
+[8]: https://github.com/holistics/dbml
+[9]: https://pypi.org/project/dbml-sqlite/
+[10]: https://github.com/Vanderhoof/PyDBML

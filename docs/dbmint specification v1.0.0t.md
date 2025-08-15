@@ -1,6 +1,6 @@
 - [1. On versioning](#1-on-versioning)
 - [2. Rust project autogeneration](#2-rust-project-autogeneration)
-  - [PEND](#pend)
+  - [2.1. PEND](#21-pend)
 - [3. Python Commands](#3-python-commands)
   - [3.1. Sync](#31-sync)
     - [3.1.1. Options](#311-options)
@@ -9,7 +9,7 @@
       - [3.1.2.2. Deleting Table or column (TODO)](#3122-deleting-table-or-column-todo)
       - [3.1.2.3. Adding new columns (TODO)](#3123-adding-new-columns-todo)
       - [3.1.2.4. Reordering columns in Table (TODO)](#3124-reordering-columns-in-table-todo)
-  - [PEND](#pend-1)
+  - [3.2. PEND](#32-pend)
 - [4. Concepts](#4-concepts)
 
 # 1. On versioning
@@ -17,7 +17,7 @@
 
 # 2. Rust project autogeneration
 
-## PEND
+## 2.1. PEND
 
 # 3. Python Commands
 
@@ -69,6 +69,6 @@ This updates the column `name` to `username`
 #### 3.1.2.4. Reordering columns in Table (TODO)
 - Simply reorder the columns.
 
-## PEND
+## 3.2. PEND
 
 # 4. Concepts
