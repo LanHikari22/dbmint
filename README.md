@@ -100,13 +100,15 @@ Table user_owns_posts {
 
 Now let's generate a sqlite3 db file using the above schema.dbml (On Windows CMD, you need to remove the "--user $(id -u):$(id -g)" bit.)
 ```
-  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest gen schema.dbml -o mydb.db
+  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest \
+    gen schema.dbml -o mydb.db
 ```
 This should generate a new mydb.db for us in the same directory, which has the same schema as described in schema.dbml.
 
 It also generates a .sql from the dbml schema for the user's information. If this is not desired, use the --no-sql option for the gen subcommand:
 ```
-  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest gen schema.dbml -o mydb.db --no-sql
+  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest \
+    gen schema.dbml -o mydb.db --no-sql
 ```
 
 
@@ -117,14 +119,16 @@ Let's extract the content of the db with
 the following command:
 
 ```
-  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest export_data mydb.db -d mydata/
+  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest \
+    export_data mydb.db -d mydata/
 ```
 
 Now this generates a directory `mydata/` with csv files for each table in our db. We can modify the csv files directly
 and then import this back into the db:
 
 ```
-  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest gen schema.dbml -d mydata/ -o mydb.db 
+  docker run --rm -it -v .:/mnt/ --user $(id -u):$(id -g) lan22h/dbmint:latest \
+    gen schema.dbml -d mydata/ -o mydb.db 
 ```
 
 # Contribution
@@ -132,7 +136,7 @@ All contribution and feature requests are welcome. Please raise an issue and we 
 
 # Support
 
-If this project brings value to you, please consider supporting me with monthly support or [buying me a coffee](https://buymeacoffee.com/lan22h).
+If this project brings value to you, please consider supporting me with a monthly subscription or [buying me a coffee](https://buymeacoffee.com/lan22h).
 
 Your support would greatly help me to create new tools or improve existing ones!
 
